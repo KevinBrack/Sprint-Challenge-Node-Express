@@ -121,6 +121,19 @@ server.post("/api/actions", async (req, res) => {
   }
 });
 
+server.put("/api/actions/id:", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const changes = req.body;
+    const response = await actionModel.update(id, changes);
+    res.status(200).send(response);
+  } catch (error) {
+    res
+      .status(500)
+      .send({ message: "ERROR PROCESSING REQUEST", error: error.message });
+  }
+});
+
 // catch all 404
 server.use(function(req, res) {
   res.status(404).send("ERROR: FILE NOT FOUND");
