@@ -22,6 +22,18 @@ server.get("/api/projects", async (req, res) => {
   }
 });
 
+server.get("/api/projects/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const response = await projectModel.get(id);
+    res.status(200).send(response);
+  } catch (error) {
+    res
+      .status(500)
+      .send({ message: "ERROR PROCESSING REQUEST", error: error.message });
+  }
+});
+
 // actions
 
 // catch all 404
