@@ -86,6 +86,16 @@ server.delete("/api/projects/:id", async (req, res) => {
 });
 
 // actions
+server.get("/api/actions", async (req, res) => {
+  try {
+    const response = await actionModel.get();
+    res.status(200).send(response);
+  } catch (error) {
+    res
+      .status(500)
+      .send({ message: "ERROR PROCESSING REQUEST", error: error.message });
+  }
+});
 
 // catch all 404
 server.use(function(req, res) {
