@@ -62,3 +62,6 @@ typings/
 
 # VSCode settings
 .vscode/
+
+# Data Backup
+data_backup/
