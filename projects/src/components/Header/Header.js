@@ -5,10 +5,14 @@ const StyledContainer = styled.div`
   margin-top: 5rem;
 `;
 
+const CoralHeader = styled.h1`
+  color: #f2697b;
+`;
+
 const Header = () => {
   return (
     <StyledContainer>
-      <h1>Sprint Challenge Node Express</h1>
+      <CoralHeader>Sprint Challenge Node Express</CoralHeader>
       <h2>By Kevin Brack</h2>
     </StyledContainer>
   );

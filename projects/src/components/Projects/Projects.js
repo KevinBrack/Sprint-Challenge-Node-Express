@@ -6,7 +6,7 @@ import styled from "styled-components";
 const ProjectWrapper = styled.div`
   margin: 0 auto;
   margin-top: 10rem;
-  border: 1px solid #fff;
+  border: 1px solid #f2697b;
   max-width: 90vw;
 `;
 
