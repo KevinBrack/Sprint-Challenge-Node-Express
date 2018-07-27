@@ -46,6 +46,19 @@ server.get("/api/projects/:id/actions", async (req, res) => {
   }
 });
 
+server.post("/api/projects", async (req, res) => {
+  // TODO: add validation
+  try {
+    const project = req.body;
+    const response = await projectModel.insert(project);
+    res.status(200).send(response);
+  } catch (error) {
+    res
+      .status(500)
+      .send({ message: "ERROR PROCESSING REQUEST", error: error.message });
+  }
+});
+
 // actions
 
 // catch all 404
