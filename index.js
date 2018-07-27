@@ -7,9 +7,20 @@ const actionModel = require("./data/helpers/actionModel");
 const projectModel = require("./data/helpers/projectModel");
 
 // use middleware
+server.use(express.json());
 
 // create endpoints
 // projects
+server.get("/api/projects", async (req, res) => {
+  try {
+    const response = await projectModel.get();
+    res.status(200).send(response);
+  } catch (error) {
+    res
+      .status(500)
+      .send({ message: "ERROR PROCESSING REQUEST", error: error.message });
+  }
+});
 
 // actions
 
