@@ -1,11 +1,16 @@
 import React from "react";
+import styled from "styled-components";
+
+const StyledContainer = styled.div`
+  margin-top: 5rem;
+`;
 
 const Header = () => {
   return (
-    <div>
+    <StyledContainer>
       <h1>Sprint Challenge Node Express</h1>
       <h2>By Kevin Brack</h2>
-    </div>
+    </StyledContainer>
   );
 };
 

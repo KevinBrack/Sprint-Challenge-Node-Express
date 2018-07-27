@@ -133,11 +133,12 @@ server.post("/api/actions", async (req, res) => {
   if (
     !"project_id" in req.body ||
     req.body.name.description < 1 ||
-    req.body.name.description > 128
+    req.body.name.description > 128 ||
+    !"notes" in req.body
   ) {
     res.status(400).send({
       message:
-        "Please make sure you entered a valid project_id for this action, and make sure your description is present and less than 128 characters"
+        "Please make sure you entered a valid project_id for this action, that you have supplied a notes field, and make sure your description is present and less than 128 characters"
     });
   }
   try {
@@ -155,11 +156,12 @@ server.put("/api/actions/id:", async (req, res) => {
   if (
     !"project_id" in req.body ||
     req.body.name.description < 1 ||
-    req.body.name.description > 128
+    req.body.name.description > 128 ||
+    !"notes" in req.body
   ) {
     res.status(400).send({
       message:
-        "Please make sure you entered a valid project_id for this action, and make sure your description is present and less than 128 characters"
+        "Please make sure you entered a valid project_id for this action, that you have supplied a notes field, and make sure your description is present and less than 128 characters"
     });
   }
   try {
