@@ -1,6 +1,7 @@
 // initialize server
 const express = require("express");
 const server = express();
+const cors = require(cors);
 
 // import databases
 const actionModel = require("./data/helpers/actionModel");
@@ -8,6 +9,7 @@ const projectModel = require("./data/helpers/projectModel");
 
 // use middleware
 server.use(express.json());
+server.use(cors({ origin: "http://localhost:3000" }));
 
 // create endpoints
 // projects
@@ -80,7 +82,6 @@ server.put("/api/projects/:id", async (req, res) => {
     });
   }
   try {
-    // TODO: add validation
     const id = req.params.id;
     const changes = req.body;
     const response = await projectModel.update(id, changes);
@@ -129,7 +130,6 @@ server.get("/api/actions/:id", async (req, res) => {
 });
 
 server.post("/api/actions", async (req, res) => {
-  // TODO: add validation
   if (
     !"project_id" in req.body ||
     req.body.name.description < 1 ||
