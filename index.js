@@ -1,7 +1,7 @@
 // initialize server
 const express = require("express");
 const server = express();
-const cors = require(cors);
+const cors = require("cors");
 
 // import databases
 const actionModel = require("./data/helpers/actionModel");
@@ -9,7 +9,7 @@ const projectModel = require("./data/helpers/projectModel");
 
 // use middleware
 server.use(express.json());
-server.use(cors({ origin: "http://localhost:3000" }));
+server.use(cors());
 
 // create endpoints
 // projects
