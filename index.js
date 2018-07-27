@@ -50,8 +50,7 @@ server.post("/api/projects", async (req, res) => {
   if (
     req.body.name.length < 1 ||
     req.body.name.length > 128 ||
-    !"description" in req.body ||
-    !"completed" in req.body
+    !"description" in req.body
   ) {
     res.status(400).send({
       message:
@@ -73,8 +72,7 @@ server.put("/api/projects/:id", async (req, res) => {
   if (
     req.body.name.length < 1 ||
     req.body.name.length > 128 ||
-    !"description" in req.body ||
-    !"completed" in req.body
+    !"description" in req.body
   ) {
     res.status(400).send({
       message:
@@ -132,6 +130,16 @@ server.get("/api/actions/:id", async (req, res) => {
 
 server.post("/api/actions", async (req, res) => {
   // TODO: add validation
+  if (
+    !"project_id" in req.body ||
+    req.body.name.description < 1 ||
+    req.body.name.description > 128
+  ) {
+    res.status(400).send({
+      message:
+        "Please make sure you entered a valid project_id for this action, and make sure your description is present and less than 128 characters"
+    });
+  }
   try {
     const action = res.body;
     const response = await actionModel.insert(action);
@@ -144,7 +152,16 @@ server.post("/api/actions", async (req, res) => {
 });
 
 server.put("/api/actions/id:", async (req, res) => {
-  // TODO: add validation
+  if (
+    !"project_id" in req.body ||
+    req.body.name.description < 1 ||
+    req.body.name.description > 128
+  ) {
+    res.status(400).send({
+      message:
+        "Please make sure you entered a valid project_id for this action, and make sure your description is present and less than 128 characters"
+    });
+  }
   try {
     const id = req.params.id;
     const changes = req.body;
