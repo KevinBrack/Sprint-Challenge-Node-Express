@@ -47,7 +47,16 @@ server.get("/api/projects/:id/actions", async (req, res) => {
 });
 
 server.post("/api/projects", async (req, res) => {
-  // TODO: add validation
+  if (
+    req.body.name.length < 1 ||
+    req.body.name.length > 128 ||
+    !"description" in req.body
+  ) {
+    res.status(400).send({
+      message:
+        "Please make sure the submitted name is present and less than 128 characters, and that a description is present"
+    });
+  }
   try {
     const project = req.body;
     const response = await projectModel.insert(project);
@@ -60,6 +69,16 @@ server.post("/api/projects", async (req, res) => {
 });
 
 server.put("/api/projects/:id", async (req, res) => {
+  if (
+    req.body.name.length < 1 ||
+    req.body.name.length > 128 ||
+    !"description" in req.body
+  ) {
+    res.status(400).send({
+      message:
+        "Please make sure the submitted name is present and less than 128 characters, and that a description is present"
+    });
+  }
   try {
     // TODO: add validation
     const id = req.params.id;
