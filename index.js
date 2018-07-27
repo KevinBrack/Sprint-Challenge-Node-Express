@@ -110,6 +110,7 @@ server.get("/api/actions/:id", async (req, res) => {
 });
 
 server.post("/api/actions", async (req, res) => {
+  // TODO: add validation
   try {
     const action = res.body;
     const response = await actionModel.insert(action);
@@ -122,10 +123,23 @@ server.post("/api/actions", async (req, res) => {
 });
 
 server.put("/api/actions/id:", async (req, res) => {
+  // TODO: add validation
   try {
     const id = req.params.id;
     const changes = req.body;
     const response = await actionModel.update(id, changes);
+    res.status(200).send(response);
+  } catch (error) {
+    res
+      .status(500)
+      .send({ message: "ERROR PROCESSING REQUEST", error: error.message });
+  }
+});
+
+server.delete("/api/actions/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const response = await actionModel.remove(id);
     res.status(200).send(response);
   } catch (error) {
     res
