@@ -50,11 +50,12 @@ server.post("/api/projects", async (req, res) => {
   if (
     req.body.name.length < 1 ||
     req.body.name.length > 128 ||
-    !"description" in req.body
+    !"description" in req.body ||
+    !"completed" in req.body
   ) {
     res.status(400).send({
       message:
-        "Please make sure the submitted name is present and less than 128 characters, and that a description is present"
+        "Please make sure the submitted name is present and less than 128 characters, that a description is present, and that there is a comleted flag with true or false"
     });
   }
   try {
@@ -72,11 +73,12 @@ server.put("/api/projects/:id", async (req, res) => {
   if (
     req.body.name.length < 1 ||
     req.body.name.length > 128 ||
-    !"description" in req.body
+    !"description" in req.body ||
+    !"completed" in req.body
   ) {
     res.status(400).send({
       message:
-        "Please make sure the submitted name is present and less than 128 characters, and that a description is present"
+        "Please make sure the submitted name is present and less than 128 characters, that a description is present, and that there is a comleted flag with true or false"
     });
   }
   try {
